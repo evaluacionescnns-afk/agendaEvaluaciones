@@ -1,0 +1,379 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    cursor: default;
+}
+
+/* Contenedor que ocupa toda la pantalla y centra vertical y horizontalmente */
+#login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+/* Caja del login */
+#login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 2rem;
+}
+
+label {
+    font-size: 1.2rem;
+}
+
+input {
+    margin: 1.5rem;
+}
+
+.btn-ingresar {
+    background-color: #cfe2ff;
+    border: none;
+}
+
+.btn-ingresar:hover {
+    background-color: #b9d6ff;
+}
+
+.btn-ingresar:active {
+    background-color: #93beff !important;
+}
+
+#error-msg {
+    margin: 1rem;
+}
+
+header {
+    position: relative;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+img {
+    height: 6rem;
+    width: auto;
+    margin: 1rem;
+}
+
+h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-family: 'Gloock', serif !important;
+    font-size: 2rem;
+    line-height: 1.35;
+    font-weight: normal;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+#nombreOIExcel{
+
+  margin-left: auto; 
+  margin-right: 2rem;
+}
+
+.icono-excel{
+    cursor: pointer;
+    transform: scale(1.7);
+}
+
+.calendar {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    flex-direction: column;
+    width: 80vw;
+    margin: 0 auto;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+}
+
+.flecha {
+    height: 50%;
+    margin: 1rem;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.oculto {
+    visibility: hidden;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2rem;
+    place-items: center;
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2rem;
+    place-items: center;
+}
+
+.calendar-days div {
+    min-width: 3rem;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.enabled-days {
+    background-color: #CEFFB8;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.not-enabled-days {
+    color: #BFBFBF;
+}
+
+h5 {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+hr {
+    width: 30%;
+    margin: auto;
+}
+
+.links-iconos{
+    display: none;
+}
+
+.selected-day {
+    background-color: #7fc75d !important;
+}
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem;
+}
+
+.accordion-item {
+    width: 60%;
+    margin: 1rem;
+    border-bottom: none !important;
+}
+
+.accordion-header-content {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.accordion-button {
+    background-color: #CEFFB8;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #CEFFB8;
+}
+
+.accordion-body {
+    background-color: #e8fbdc;
+    color: #052c65;
+    width: 80%;
+}
+
+.reserve {
+    background-color: #cfe2ff;
+    color: #052c65;
+    border: none;
+}
+
+.reserve:hover {
+    background-color: #b9d6ff;
+    color: #052c65;
+}
+
+.reserve:active {
+    background: #93beff !important;
+    color: #052c65 !important;
+}
+
+.modal-header .modal-title {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.btn-success {
+    background: #ff8787 !important;
+    color: #460000;
+}
+
+.btn-success:hover {
+    background: #ff7171 !important;
+    color: #460000;
+}
+
+.btn-success:active {
+    background: #d46060 !important;
+    color: #460000 !important;
+}
+
+#modalConfirmarBtn {
+    background-color: #cfe2ff;
+    color: #052c65;
+    border: none;
+}
+
+
+#modalConfirmarBtn:hover {
+    background-color: #b9d6ff;
+}
+
+#modalConfirmarBtn:active {
+    background-color: #93beff;
+}
+
+#modalConfirmarEdicionBtn{
+    background-color: #cfe2ff;
+    color: #052c65;
+    border: none;
+}
+
+#modalConfirmarEdicionBtn:hover{
+    background-color: #b9d6ff;
+}
+
+#modalConfirmarEdicionBtn:active{
+    background-color: #93beff;
+}
+
+.btn-hidden{
+    display: none;
+}
+
+.nombre-item-edicion{
+    margin: 1.5rem 0;
+    list-style: none;
+}
+
+/* ----------- RESPONSIVE DESIGN ----------- */
+
+@media (max-width: 768px) {
+    body {
+        font-size: 0.95rem;
+    }
+
+    #login-container {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    label {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    input {
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin-top: 1.8rem;
+    }
+
+    img {
+        height: 4rem;
+        margin: 0.5rem;
+    }
+
+    header {
+        height: 5rem;
+    }
+
+    .calendar-header {
+    margin-top: 3.5rem;
+    }
+
+
+    .calendar {
+        width: 95vw;
+        padding: 0.5rem;
+    }
+
+    .calendar-weekdays,
+    .calendar-days {
+        gap: 0.5rem;
+    }
+
+    .calendar-days div {
+        min-width: 2rem;
+        min-height: 2rem;
+        font-size: 0.85rem;
+    }
+
+    .flecha {
+        margin: 0.5rem;
+    }
+
+    .accordion {
+        margin: 2rem 0;
+    }
+
+    .accordion-item {
+        width: 90%;
+    }
+
+    .accordion-button,
+    .accordion-body {
+        width: 100%;
+    }
+
+    .accordion-header-content {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .modal-body {
+        font-size: 0.95rem;
+    }
+
+    h5 {
+        font-size: 1rem;
+    }
+
+    hr {
+        width: 50%;
+    }
+
+
+}

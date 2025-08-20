@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evaluaciones 2025</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+
+    <!-- XlsxPopulate -->
+    <script src="https://unpkg.com/xlsx-populate/browser/xlsx-populate.min.js"></script>
+    <script src="script.js"></script>
+
+
+</head>
+<body>
+    <header id="header">
+            <img src="./imgs/logo.jpg" alt="Logo" />
+            <h1>Agenda para evaluaciones</h1>
+            <div id="nombreOIExcel"></div>
+            <p id="nombreIntegrante"></p>
+    </header>
+
+    <div id="login-wrapper">
+        <form id="login-container">
+            <label for="ci">Ingrese cédula del integrante sin puntos ni guiones</label>
+            <input type="text" id="ci" name="ci" placeholder="51232346" maxlength="8" required />
+            <button type="submit" class="btn btn-ingresar">Ingresar</button>
+            <div id="error-msg" style="color: #ff0000; display: none;"></div>
+        </form>
+    </div>
+    
+    
+    <div id="calendar-container" style="display:none;">
+
+        <div class="calendar">
+            <div class="calendar-header d-flex align-items-center justify-content-between mb-2">
+                <button class="flecha" id="flecha-atras"><i class="fas fa-chevron-left"></i></button>
+                <h3 id="month"></h3>
+                <button class="flecha" id="flecha-adelante"><i class="fas fa-chevron-right"></i></button>
+        </div>
+            
+        <div class="calendar-cells">
+            <div class="calendar-weekdays" id="calendar-weekdays">
+                <div>Dom</div>
+                <div>Lun</div>
+                <div>Mar</div>
+                <div>Mié</div>
+                <div>Jue</div>
+                <div>Vie</div>
+                <div>Sáb</div>
+            </div>
+            <div class="calendar-days" id="calendar-days"></div>
+            </div>
+        </div>
+
+        <h5 id="fecha-seleccionada" style="display:none;"></h5>
+        <hr id="separador-fecha" style="display:none;">
+
+
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+
+        </div>
+
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="modalConfirmacionLabel" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalConfirmacionLabel">Confirmación</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body" id="modalConfirmacionMensaje">
+            <!-- Texto dinámico -->
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="modalCancelarBtn" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="modalConfirmarBtn">Confirmar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+<!-- Modal de Edición de Grupo -->
+<div class="modal fade" id="modalEdicionGrupo" tabindex="-1" aria-labelledby="modalEdicionGrupoLabel" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalEdicionGrupoLabel">Editar grupo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">        
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="modalConfirmarEdicionBtn" data-bs-dismiss="modal">Eliminar inscripción</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="links-iconos">
+        <a href="https://www.flaticon.es/iconos-gratis/archivo-de-microsoft-excel" title="archivo de microsoft excel iconos">Archivo de microsoft excel iconos creados por Rahul Kaklotar - Flaticon</a>
+        <a href="https://www.flaticon.es/iconos-gratis/editar" title="editar iconos">Editar iconos creados por Kiranshastry - Flaticon</a>
+    </div>
+</div>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+    <script>
+        const SUPABASE_URL = 'https://gzpnxcmxfpoxdibffmze.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd6cG54Y214ZnBveGRpYmZmbXplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM3NTI4MjcsImV4cCI6MjA2OTMyODgyN30.UIPe6AGY3esv6kOHPw7vKuCZMLq0IR9I6QXYRTPQWEQ';
+        window.supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    </script>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Tu script.js -->
+    <script src="script.js"></script>
+</body>
+</html>
