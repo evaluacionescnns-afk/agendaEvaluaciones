@@ -962,16 +962,21 @@ document.addEventListener('DOMContentLoaded', () => {
                                 if (errorGrupo) {
                                     console.error('Error al obtener horario del grupo:', errorGrupo);
                                 } else {
-                                    // Enviar mail
-                                    let dirMails =  await obtenerDirMailIntegrantes(grupoID);
+                                    let dirMails = await obtenerDirMailIntegrantes(grupoID);
                                     let horarioGrupo = horaInicio + " - " + horaFin;
                                     let grupoNombre = grupo.descripcion;
 
-                                    for (let itemMail in dirMails){
-                                        await enviarCorreo(dirMails[itemMail], grupoNombre, fechaGrupo, horarioGrupo);
+                                    try {
+                                        // Ejecutar todos los envíos en paralelo y esperar a que terminen
+                                        await Promise.all(
+                                            dirMails.map(email => enviarCorreo(email, grupoNombre, fechaGrupo, horarioGrupo))
+                                        );
+                                        console.log('Todos los mails enviados');
+                                    } catch (err) {
+                                        console.error('Error enviando mails:', err);
                                     }
-                                }                     
-
+                                }
+                  
                             }
 
                             // Actualizar UI
