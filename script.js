@@ -1,7 +1,7 @@
 emailjs.init('2eMfdE1GQKr8lsBkC');
 
 document.addEventListener('DOMContentLoaded', () => {
-    const monthNames = ["Agosto", "Septiembre", "Octubre"];
+    const monthNames = ["Septiembre", "Octubre"];
     const year = 2025;
     let currentMonth = 0;
     const enabledDates = {};
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function dibujarDias() {
         calendarDays.innerHTML = "";
 
-        const baseMonth = 7;
+        const baseMonth = 8;
         const jsMonth = baseMonth + currentMonth;
 
         const firstDay = firstDayOfMonth(jsMonth, year);
