@@ -271,7 +271,7 @@ hr {
 }
 
 .btn-hidden{
-    display: none;
+    display: none !important;
 }
 
 .nombre-item-edicion{
